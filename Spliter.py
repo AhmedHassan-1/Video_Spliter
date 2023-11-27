@@ -35,3 +35,4 @@ ffmpeg.input(args.Video_Input).output(
     segment_start_number=1,
     loglevel="quiet",
 ).run()
+print("Split Had Finshed")
