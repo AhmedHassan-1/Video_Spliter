@@ -39,7 +39,7 @@ parser.add_argument(
 args = parser.parse_args()
 
 ffmpeg.input(args.Video_Input).output(
-    f"{dir}/{args.Name}_%03d.{args.Extension}",
+    f"{args.directory}/{args.Name}_%03d.{args.Extension}",
     c="copy",
     f="segment",
     segment_time=args.Time,
