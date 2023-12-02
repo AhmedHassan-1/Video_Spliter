@@ -37,14 +37,27 @@ parser.add_argument(
     default="mp4",
 )
 args = parser.parse_args()
+dir_input_exsit = os.path.exists(f"{args.Video_Input}")
+dir_output_exsit = os.path.exists(args.directory)
 
-ffmpeg.input(args.Video_Input).output(
-    f"{args.directory}/{args.Name}_%03d.{args.Extension}",
-    c="copy",
-    f="segment",
-    segment_time=args.Time,
-    reset_timestamps=1,
-    segment_start_number=1,
-    loglevel="quiet",
-).run()
-print("Split Had Finshed")
+
+def output():
+    if dir_input_exsit == False:
+        print("Video input is not valid ")
+    else:
+        if dir_output_exsit == False:
+            os.system(f"mkdir {args.directory}")
+
+        ffmpeg.input(args.Video_Input).output(
+            f"{args.directory}/{args.Name}_%03d.{args.Extension}",
+            c="copy",
+            f="segment",
+            segment_time=args.Time,
+            reset_timestamps=1,
+            segment_start_number=1,
+            loglevel="quiet",
+        ).run()
+        print("Split Had Finshed")
+
+
+output()
